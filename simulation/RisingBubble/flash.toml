@@ -1,0 +1,92 @@
+[Parfile]
+  CSVSummaryAllProcs = ".TRUE."
+  # Inverse of Reynolds Number
+  ins_invReynolds = 0.0042
+
+  # 1/Fr**2, Fr (Froude Number)
+  ins_gravY = -1.0
+
+  # Gas density and viscosity scaled by liquid
+  mph_rhoGas = 0.0083
+  mph_muGas = 1.0
+  mph_iPropSmear = 1.0
+
+  # Inverse Weber Number
+  mph_invWeber = 1.0
+
+  # bubble radius
+  sim_bubbleRadius = 0.25
+
+  # Grid dimensionality and geometry
+  geometry = "cartesian"
+
+  # Size of computational volume
+  xmin = -1.0
+  xmax = 1.0
+  ymin = 0.0
+  ymax = 4.0
+
+  # Boundary conditions
+  xl_boundary_type = "noslip_ins"
+  xr_boundary_type = "noslip_ins"
+  yl_boundary_type = "noslip_ins"
+  yr_boundary_type = "outflow_ins"
+
+  # Simulation (grid, time, I/O) parameters
+  run_comment = "Rising Bubble problem"
+  log_file = "INS_Rising_Bubble.log"
+  basenm = "INS_Rising_Bubble_"
+  restart = ".FALSE."
+  nend = 10000000
+  tmax = 20
+  ins_cflFlg = 1
+  ins_cfl = 0.05
+  ins_sigma = 0.05
+  ins_dtSpec = 1.0e-4
+  dtinit = 1.0e-4
+  dtmax = 1.0e-4
+  tstep_change_factor = 1.0
+  ins_pressureCorrect = ".FALSE."
+
+  plot_var_1 = "pres"
+  plot_var_2 = "velx"
+  plot_var_3 = "vely"
+  plot_var_4 = "dfun"
+
+  checkpointFileIntervalTime = 1.0
+  plotFileIntervalTime = 0.1
+
+  # AMR parameters
+  nblockx = 4
+  nblocky = 8
+  nrefs = 10000000
+
+  lrefine_min = 1
+  lrefine_max = 1
+
+  # Runtime parameters for the Rising Bubble problem.
+  gr_pmRpDivergenceFree = 1
+  gr_pmRpNfieldDivf = 2
+  gr_pmRpConsvFluxes = ".TRUE."
+  gr_pmRpConsvFluxDensities = ".FALSE."
+
+  # Settings for guard cell filling
+  gr_bcEnableApplyMixedGds = ".FALSE."
+  convertToConsvdForMeshCalls = ".FALSE."
+  convertToConsvdInMeshInterp = ".FALSE."
+  enableMaskedGCFill = ".FALSE."
+
+  # Flux Conservation for AMR
+  flux_correct = ".TRUE."
+
+  # AMReX Poisson Solver Parameters
+  gr_amrexMG_composite_solve = ".TRUE."
+  gr_amrexMG_Tol = 1e-13
+  gr_amrexMG_max_iter = 200
+
+  # HYPRE Poisson Solver Parameters
+  gr_hyprePrintSolveInfo = ".FALSE."
+  gr_hyprePcType = "HYPRE_AMG"
+  gr_hypreSolverType = "HYPRE_BICGSTAB"
+  gr_hypreRelTol = 1.0e-12
+  gr_hypreFloor = 1.0e-16

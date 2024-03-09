@@ -1,0 +1,40 @@
+# YAML configuration file for jobrunner
+#
+# This file provides an organizational structure
+# for bash files spread all over the repository
+#
+# jobrunner should be called from the root of
+# a project directory to execute commands in a desired working directory.
+#
+# All Jobfiles present in a directory tree
+# are combined to a single dictionary when executing
+# jobrunner commands
+#
+# Defined scripts that need to be included
+# when either setting up or submitting a job
+#
+
+# schedular configuration
+schedular:
+  command: sbatch
+  options:
+    - "#SBATCH -p standard"
+    - "#SBATCH -A amowli_lab"
+#    - "#SBATCH -p free"
+    - "#SBATCH --nodes=1"
+    - "#SBATCH --ntasks=8"
+    - "#SBATCH --cpus-per-task=1"
+    - "#SBATCH --mail-type=end"
+    - "#SBATCH --mail-user=sheikhh1@uci.edu"
+    - "#SBATCH --mem=64G"
+    - "#SBATCH --job-name=rise"
+    - "#SBATCH --constraint='mlx5_ib'"
+
+# job configuration
+job:
+  setup:
+    - config.sh
+    - environment.sh
+  submit:
+    - config.sh
+    - environment.sh
